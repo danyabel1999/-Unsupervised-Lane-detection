@@ -1,110 +1,107 @@
 import numpy as np
-import matplotlib.image as mpimg
 import matplotlib.pyplot as plt
 import cv2
-import matplotlib.gridspec as gridspec
 
-# Load our image
-#binary_warped = mpimg.imread('warped_example.jpg')
 def gamma_correction(RGBimage, correct_param=2, equalizeHist=False):
     red = RGBimage[:, :, 2]
     green = RGBimage[:, :, 1]
     blue = RGBimage[:, :, 0]
-
+    # gamma correction in the red channel
     red = red / 255.0
     red = cv2.pow(red, correct_param)
     red = np.uint8(red * 255)
     if equalizeHist:
         red = cv2.equalizeHist(red)
-
+    #gamma correction in the green channel
     green = green / 255.0
     green = cv2.pow(green, correct_param)
     green = np.uint8(green * 255)
     if equalizeHist:
         green = cv2.equalizeHist(green)
-
+    #gamma correction in the blue channel
     blue = blue / 255.0
     blue = cv2.pow(blue, correct_param)
     blue = np.uint8(blue * 255)
     if equalizeHist:
         blue = cv2.equalizeHist(blue)
-
+    #combining gamma corrected channels
     output = cv2.merge((blue, green, red))
-    #cv2.imshow('gammaout',output)
-    #cv2.waitKey(0)
+    #returning the gamma corrected output
     return output
 
 def color_threshold(image, sthresh=(0,255), vthresh=(0,255)):
     hls = cv2.cvtColor(image, cv2.COLOR_RGB2HLS)
     s_channel = hls[:,:,2]
     s_binary = np.zeros_like(s_channel)
+    #thersholding in s channel
     s_binary[(s_channel > sthresh[0]) & (s_channel <= sthresh[1])] = 1
 
     hsv = cv2.cvtColor(image, cv2.COLOR_RGB2HSV)
     v_channel = hsv[:,:,2]
     v_binary = np.zeros_like(v_channel)
+    #thresholding in v channel
     v_binary[(v_channel > vthresh[0]) & (v_channel <= vthresh[1])] = 1
-
+    
     output = np.zeros_like(s_channel)
     output[(s_binary == 1) & (v_binary) == 1] = 1
-
     # Return the combined s_channel & v_channel binary image
     return output
 
 def sobel(img):
+    #converting the frame to grayscale
     gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
     sobelx = cv2.Sobel(gray, cv2.CV_64F, 1, 0)
     sobely = cv2.Sobel(gray, cv2.CV_64F, 0, 1)
     abs_sobelx = np.absolute(sobelx)
     abs_sobely = np.absolute(sobely)
-    thresh_min = 20
-    thresh_max = 100
+    thresh_min = 20  # setting the minimum threshold
+    thresh_max = 100 # setting the maximum thereshold
     scaled_sobely = np.uint8(255 * abs_sobely / np.max(abs_sobely))
     sybinary = np.zeros_like(scaled_sobely)
-    sybinary[(scaled_sobely >= thresh_min) & (scaled_sobely <= thresh_max)] = 1
+    sybinary[(scaled_sobely >= thresh_min) & (scaled_sobely <= thresh_max)] = 1  #Sobel thresholding in y direction
     scaled_sobelx = np.uint8(255 * abs_sobelx / np.max(abs_sobelx))
     sxbinary = np.zeros_like(scaled_sobelx)
-    sxbinary[(scaled_sobelx >= thresh_min) & (scaled_sobelx <= thresh_max)] = 1
+    sxbinary[(scaled_sobelx >= thresh_min) & (scaled_sobelx <= thresh_max)] = 1  #Sobel thresholding in x direction
     c_binary = color_threshold(img, sthresh=(100, 255), vthresh=(50, 255))
+    #return the combined thresholded output
     return (sybinary + sxbinary+c_binary)
 
 def warp(img):
     img_size=(img.shape[1],img.shape[0])
+    #defining the source points 
     src = np.float32(
         [[850, 500],
          [1000, 658],
          [23, 658],
-         [270, 500]]
-    )
+         [270, 500]])
+    #defining the destination points
     dst = np.float32(
         [[1000, 500],
          [1000, 658],
          [23, 658],
-         [10, 500]]
-    )
+         [10, 500]])
     M = cv2.getPerspectiveTransform(src, dst)
-    Minv = cv2.getPerspectiveTransform(dst, src)
     warped = cv2.warpPerspective(img, M, img_size, flags=cv2.INTER_LINEAR)
+    #return perpective transformed image
     return warped
 def inv_warp(img):
     img_size=(img.shape[1],img.shape[0])
+    #define source points
     src = np.float32(
         [[850, 500],
          [1000, 658],
          [23, 658],
-         [270, 500]]
-    )
+         [270, 500]])
+    #define destination points
     dst = np.float32(
         [[1000, 500],
          [1000, 658],
          [23, 658],
-         [10, 500]]
-    )
-    M = cv2.getPerspectiveTransform(src, dst)
+         [10, 500]])
     Minv = cv2.getPerspectiveTransform(dst, src)
     invwarped = cv2.warpPerspective(img, Minv, img_size, flags=cv2.INTER_LINEAR)
+    #return inverse perspective trasnformed image
     return invwarped
-
 
 def find_lane_pixels(binary_warped):
     # Take a histogram of the bottom half of the image
@@ -229,11 +226,7 @@ def fit_polynomial(binary_warped):
 
     # Draw the lane onto the warped blank image
     cv2.fillPoly(color_warp, np.int_([pts]), (0, 255, 0))
-
-
-
     return color_warp
-
 
 cap = cv2.VideoCapture('test1.mp4')
 fourcc = cv2.VideoWriter_fourcc(*'XVID')

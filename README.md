@@ -5,15 +5,9 @@
 
 ![](/images/5.jpg) 
 
- 
-
 2. Apply Gamma Correction to the calibrated images. 
 
- 
-
 ![](/images/6.jpg) 
-
- 
 
 3. Sobel and HLS thresholding are executed simultaneously for edge detection, and then combined using a combined thresholding technique . 
 

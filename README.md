@@ -18,8 +18,6 @@
 1. cv2 (opencv)
 2. numpy
 3. matplotlib
-4. glob
-5. pickle
 
 ## Code Execution 
 `<cd Sliding-window-algorithm---Lane-Detection>` 

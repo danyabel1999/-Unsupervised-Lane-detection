@@ -12,7 +12,6 @@
 4.  A perspective transform is applied on the image frame (birds-eye view). 
 
 5. Sliding window algorithm is applied to find the lane pixels and boundary.
-
 ![](/images/1.png)
 
 6. Higher order polyfit function is used to fit the detected road lane. 

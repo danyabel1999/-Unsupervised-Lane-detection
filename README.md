@@ -1,6 +1,6 @@
 # Unsupervised Lane Detection 
 
-## The following the steps of image processing and analysis involved in 'detection.py',
+## The following the steps of image processing and analysis involved in 'sliding_window_code_new.py',
 1. The image captured by the camera is subjected to camera calibration.
 ![](/images/5.jpg) 
 

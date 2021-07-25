@@ -1,9 +1,9 @@
-# Unsupervised Lane Detection 
+![Screenshot (244)](https://user-images.githubusercontent.com/63741335/126901487-9d09a6b8-1d9d-4cc0-b4d5-72bd219858a4.png)
+# Unsupervised Techniques For Lane Detection 
 
 ## The following the steps of image processing and analysis involved in 'sliding_window_code_new.py',
 1. The image captured by the camera is subjected to camera calibration.
-
-![Screenshot (244)](https://user-images.githubusercontent.com/63741335/126901487-9d09a6b8-1d9d-4cc0-b4d5-72bd219858a4.png)
+![](/images/5.jpg) 
 
 2. Apply Gamma Correction to the calibrated images.
 ![](/images/6.jpg) 

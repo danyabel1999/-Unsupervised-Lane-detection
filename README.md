@@ -1,4 +1,3 @@
-![slidingwindow search](https://user-images.githubusercontent.com/63741335/126900401-94cd6a75-8247-4dba-94c9-ae2149711cd9.png)
 ![output](https://user-images.githubusercontent.com/63741335/126900340-d502c51f-4ba5-4aa1-b572-a1efc584f5e1.jpg)
 # Unsupervised Lane Detection 
 
@@ -14,7 +13,7 @@
 4.  A perspective transform is applied on the image frame (birds-eye view). 
 
 5. Sliding window algorithm is applied to find the lane pixels and boundary.
-![](/images/1.png)
+![slidingwindow search](https://user-images.githubusercontent.com/63741335/126900401-94cd6a75-8247-4dba-94c9-ae2149711cd9.png)
 
 6. Higher order polyfit function is used to fit the detected road lane. 
 

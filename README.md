@@ -11,6 +11,7 @@
 ![gamma2](https://user-images.githubusercontent.com/63741335/126901679-75c49b55-1b11-4224-9063-4931e82f6322.jpeg)
 
 3. Sobel and HLS thresholding are executed simultaneously for edge detection, and then combined using a combined thresholding technique.
+
 ![Screenshot (246)](https://user-images.githubusercontent.com/63741335/126901988-061fe0d2-1e6a-40aa-a4c7-24f5235477c5.png)
  
 

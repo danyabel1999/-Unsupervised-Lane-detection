@@ -9,7 +9,7 @@
 
 ![](/images/6.jpg) 
 
-3. Sobel and HLS thresholding are executed simultaneously for edge detection, and then combined using a combined thresholding technique . 
+3. Sobel and HLS thresholding are executed simultaneously for edge detection, and then combined using a combined thresholding technique. 
 
 4.  A perspective transform is applied on the image frame ("birds-eye view"). 
 

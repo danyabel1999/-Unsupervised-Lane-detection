@@ -1,18 +1,37 @@
 # Unsupervised Lane Detection 
 
 ## The following the steps of image processing and analysis involved in 'detection.py',
-1. Compute the camera calibration matrix and distortion coefficients using a set of chessboard images taken from Picamera.
-![](/images/5.jpg)
-2. Apply a distortion correction to raw images.
-![](/images/6.jpg)
-3. Use binary transforms., to create a thresholded binary image.
-4. Apply a perspective transform to rectify binary image ("birds-eye view").
-5. Detect lane pixels and fit to find the lane boundary using sliding window algorithm.
-![](/images/1.png)
-6. Determine the curvature of the lane and vehicle position with respect to center.
-7. Project the detected lane boundaries back onto the original image.
-![](/images/2.png)
-8. Output visual display of the lane boundaries and numerical estimation of lane curvature and vehicle offset position.
+1. The image captured by the camera is subjected to camera calibration. 
+
+![](/images/5.jpg) 
+
+ 
+
+2. Apply Gamma Correction to the calibrated images. 
+
+ 
+
+![](/images/6.jpg) 
+
+ 
+
+3. Sobel and HLS thresholding are executed simultaneously for edge detection, and then combined using a combined thresholding technique . 
+
+4.  A perspective transform is applied on the image frame ("birds-eye view"). 
+
+5. Sliding window algorithm is applied to find the lane pixels and boundary . 
+
+ 
+
+![](/images/1.png) 
+
+ 
+
+6. Higher order polyfit function is used to fit the detected road lane. 
+
+7. Return to the original image and project the detected lane boundaries. 
+
+ 
 ![](/images/3.png)
 ## Required Python Libraries
 1. cv2 (opencv)

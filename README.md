@@ -1,12 +1,14 @@
-![Screenshot (244)](https://user-images.githubusercontent.com/63741335/126901487-9d09a6b8-1d9d-4cc0-b4d5-72bd219858a4.png)
 # Unsupervised Techniques For Lane Detection 
 
 ## The following the steps of image processing and analysis involved in 'sliding_window_code_new.py',
 1. The image captured by the camera is subjected to camera calibration.
-![](/images/5.jpg) 
+
+![Screenshot (244)](https://user-images.githubusercontent.com/63741335/126901487-9d09a6b8-1d9d-4cc0-b4d5-72bd219858a4.png)
 
 2. Apply Gamma Correction to the calibrated images.
-![](/images/6.jpg) 
+
+![gamma0 5](https://user-images.githubusercontent.com/63741335/126901677-3883546c-cc14-402d-8642-fbf9c39dc723.jpeg)
+![gamma2](https://user-images.githubusercontent.com/63741335/126901679-75c49b55-1b11-4224-9063-4931e82f6322.jpeg)
 
 3. Sobel and HLS thresholding are executed simultaneously for edge detection, and then combined using a combined thresholding technique. 
 

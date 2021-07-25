@@ -1,3 +1,4 @@
+![Screenshot (244)](https://user-images.githubusercontent.com/63741335/126901487-9d09a6b8-1d9d-4cc0-b4d5-72bd219858a4.png)
 # Unsupervised Lane Detection 
 
 ## The following the steps of image processing and analysis involved in 'sliding_window_code_new.py',

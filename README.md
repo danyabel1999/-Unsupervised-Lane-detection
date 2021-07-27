@@ -36,7 +36,7 @@
 2. numpy
 3. matplotlib
 
-##Acknowledgement
+## Acknowledgement
 
 The work for building this content is done by
 Akash Elijah(akashelijah@gmail.com)

@@ -27,6 +27,8 @@
 
 7. Return to the original image and project the detected lane boundaries.
 ![outputlane](https://user-images.githubusercontent.com/63741335/127209704-cd8a52a4-36e7-4cbe-8a0a-7716ba90f09f.png)
+![tunnel](https://user-images.githubusercontent.com/63741335/127211001-79be8d02-0ebe-43ff-a5c3-07399b7c7d0f.jpg)
+
  
 ![](/images/3.png)
 ## Required Python Libraries

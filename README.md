@@ -39,9 +39,13 @@
 ## Acknowledgement
 
 The work for building this content is done by
-  Akash Elijah(akashelijah@gmail.com)
-  Dany Jacob(danyabel@gmail.com)
-  R Hareesh(hareeshrajeev@gmail.com)
-  Arya Shajan(aryashajan13@gmail.com)
+
+Akash Elijah(akashelijah@gmail.com)
+
+Dany Jacob(danyabel@gmail.com)
+
+R Hareesh(hareeshrajeev@gmail.com)
+
+Arya Shajan(aryashajan13@gmail.com)
 
 This project is under the guidance of Prof.Sinnu Susan Thomas(sinnu.thomas@iiitmk.ac.in), supported by IIITMK,Thiruvananthapuram.

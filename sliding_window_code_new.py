@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import cv2
 
-def gamma_correction(RGBimage, correct_param=2, equalizeHist=False):
+def gamma_correction(RGBimage, correct_param=1.8, equalizeHist=False):
     red = RGBimage[:, :, 2]
     green = RGBimage[:, :, 1]
     blue = RGBimage[:, :, 0]
@@ -70,16 +70,16 @@ def warp(img):
     img_size=(img.shape[1],img.shape[0])
     #defining the source points 
     src = np.float32(
-        [[850, 500],
-         [1000, 658],
-         [23, 658],
-         [270, 500]])
+        [[690, 450],
+         [800, 540],
+         [400, 540],
+         [570, 450]])
     #defining the destination points
     dst = np.float32(
-        [[1000, 500],
-         [1000, 658],
-         [23, 658],
-         [10, 500]])
+        [[9600, 300],
+         [1050, 690],
+         [300, 690],
+         [300, 300]])
     M = cv2.getPerspectiveTransform(src, dst)
     warped = cv2.warpPerspective(img, M, img_size, flags=cv2.INTER_LINEAR)
     #return perpective transformed image
@@ -88,16 +88,16 @@ def inv_warp(img):
     img_size=(img.shape[1],img.shape[0])
     #define source points
     src = np.float32(
-        [[850, 500],
-         [1000, 658],
-         [23, 658],
-         [270, 500]])
+        [[690, 450],
+         [800, 540],
+         [400, 540],
+         [570, 450]])
     #define destination points
     dst = np.float32(
-        [[1000, 500],
-         [1000, 658],
-         [23, 658],
-         [10, 500]])
+        [[9600, 300],
+         [1050, 690],
+         [300, 690],
+         [300, 300]])
     Minv = cv2.getPerspectiveTransform(dst, src)
     invwarped = cv2.warpPerspective(img, Minv, img_size, flags=cv2.INTER_LINEAR)
     #return inverse perspective trasnformed image
@@ -190,7 +190,7 @@ def fit_polynomial(binary_warped):
     # Find our lane pixels first
     leftx, lefty, rightx, righty, out_img = find_lane_pixels(binary_warped)
 
-    # Fit a second order polynomial to each using `np.polyfit`
+    # Fit a third order polynomial to each using `np.polyfit`
     left_fit = np.polyfit(lefty, leftx, 3)
     right_fit = np.polyfit(righty, rightx, 3)
 
@@ -228,31 +228,30 @@ def fit_polynomial(binary_warped):
     cv2.fillPoly(color_warp, np.int_([pts]), (0, 255, 0))
     return color_warp
 
-cap = cv2.VideoCapture('test1.mp4')
-fourcc = cv2.VideoWriter_fourcc(*'XVID')
-out = cv2.VideoWriter('output1.avi', fourcc, 20.0, (1280, 720))
+if __name__ == '__main__':
+    video_path = input()
+    cap = cv2.VideoCapture(video_path)
+    fourcc = cv2.VideoWriter_fourcc(*'XVID')
+    out = cv2.VideoWriter('output.avi', fourcc, 20.0, (1280, 720))
 
-while (cap.isOpened()):
-    ret, frame = cap.read()
-    corrected_img = gamma_correction(frame)
-    binary_out = sobel(corrected_img)
-    binary_warped = warp(binary_out)
-    color_warp = fit_polynomial(binary_warped)
-    ##inv_pers = inv_warp(out_img)
+    while (cap.isOpened()):
+        ret, frame = cap.read()
+        corrected_img = gamma_correction(frame)
+        binary_out = sobel(corrected_img)
+        binary_warped = warp(binary_out)
+        color_warp = fit_polynomial(binary_warped)
+        ##inv_pers = inv_warp(out_img)
 
-    # Warp the blank back to original image space using inverse perspective matrix (Minv)
-    newwarp = inv_warp(color_warp)
-    # Combine the result with the original image
-    result = cv2.addWeighted(frame, 1, newwarp, 0.3, 0)
-    cv2.imshow("result", result)
-    out.write(result)
-    #result = cv2.addWeighted(frame,1.0,inv_pers,1.0,1.0)
-    #cv2.imshow("result", result)
-    #plt.imshow(binary_warped,cmap ='gray')
-    #plt.show()
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
+        # Warp the blank back to original image space using inverse perspective matrix (Minv)
+        newwarp = inv_warp(color_warp)
+        # Combine the result with the original image
+        result = cv2.addWeighted(frame, 1, newwarp, 0.3, 0)
+        cv2.imshow("result", result)
+        out.write(result)
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
+    
 
-cap.release()
-out.release()
-cv2.destroyAllWindows()
+    cap.release()
+    out.release()
+    cv2.destroyAllWindows()

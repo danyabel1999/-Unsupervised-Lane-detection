@@ -76,7 +76,7 @@ def warp(img):
          [570, 450]])
     #defining the destination points
     dst = np.float32(
-        [[9600, 300],
+        [[960, 300],
          [1050, 690],
          [300, 690],
          [300, 300]])
@@ -94,7 +94,7 @@ def inv_warp(img):
          [570, 450]])
     #define destination points
     dst = np.float32(
-        [[9600, 300],
+        [[960, 300],
          [1050, 690],
          [300, 690],
          [300, 300]])

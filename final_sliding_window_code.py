@@ -66,10 +66,10 @@ def warp(img):
          [570, 450]]
     )
     dst = np.float32(
-        [[1140, 300],
-         [1200, 670],
-         [120, 700],
-         [120, 300]]
+        [[960, 300],
+         [1050, 690],
+         [300, 690],
+         [300, 300]]
     )
     M = cv2.getPerspectiveTransform(src, dst)
     Minv = cv2.getPerspectiveTransform(dst, src)
@@ -84,10 +84,10 @@ def inv_warp(img):
          [570, 450]]
     )
     dst = np.float32(
-        [[1140, 300],
-         [1200, 670],
-         [120, 700],
-         [120, 300]]
+        [[960, 300],
+         [1050, 690],
+         [300, 690],
+         [300, 300]]
     )
     M = cv2.getPerspectiveTransform(src, dst)
     Minv = cv2.getPerspectiveTransform(dst, src)

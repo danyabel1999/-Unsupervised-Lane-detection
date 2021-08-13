@@ -1,0 +1,16 @@
+ROI definition
+We took most of the videos from Jiqing Expressway dataset so that the generalised ROI can be used for processing the videos
+But some of the challenging videos used were taken from different datasets and other internet sources we cannot use the generalised ROI for processing the videos
+We have to find the ROI for those videos manually
+ROI can be redefined in the code inside warp and inverse warp functions
+
+Taking input video
+The video used for processing is read by 212 line of the code
+Name of the video file is given directly here(this code does not take input from user we have to do it manually), given that the video file is in the same directory as that of the code file is 
+video resolution of every videos we used was 1280x720
+If the video file is having different resolution :
+solution 1: resize the video
+solution 2: change the ROI accordingly
+(original video files in the jiqing dataset was having high resolution rates so we had to resize them to the general resolution 1280x720)
+
+General note: To identify video file taken from jiqing dataset, there will be date and time mark at the bottom right corner of those video files.

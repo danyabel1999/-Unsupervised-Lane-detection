@@ -60,10 +60,10 @@ def sobel(img):
 def warp(img):
     img_size=(img.shape[1],img.shape[0])
     src = np.float32(
-        [[795, 530],
-         [1020, 670],
-         [370, 670],
-         [552, 530]]
+        [[690, 450],
+         [800, 540],
+         [400, 540],
+         [570, 450]]
     )
     dst = np.float32(
         [[1140, 300],
@@ -78,10 +78,10 @@ def warp(img):
 def inv_warp(img):
     img_size=(img.shape[1],img.shape[0])
     src = np.float32(
-        [[795, 530],
-         [1020, 670],
-         [370, 670],
-         [552, 530]]
+        [[690, 450],
+         [800, 540],
+         [400, 540],
+         [570, 450]]
     )
     dst = np.float32(
         [[1140, 300],
